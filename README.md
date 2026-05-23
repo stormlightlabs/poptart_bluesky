@@ -22,7 +22,7 @@ Use the packages independently or together:
 dependencies:
     poptart: ^0.1.0
     poptart_bluesky_text: ^0.1.0
-    poptart_bluesky_moderation: ^0.1.0
+    poptart_bluesky_moderation: ^0.2.0
 ```
 
 `poptart_bluesky_moderation` works with Bluesky models from

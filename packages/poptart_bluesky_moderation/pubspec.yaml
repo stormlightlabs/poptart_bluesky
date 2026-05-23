@@ -1,6 +1,6 @@
 name: poptart_bluesky_moderation
 description: High-level Bluesky moderation helpers for Poptart lexicon models.
-version: 0.1.0
+version: 0.2.0
 homepage: https://poptart.xyz
 repository: https://github.com/stormlightlabs/poptart_bluesky/tree/main/packages/poptart_bluesky_moderation
 issue_tracker: https://github.com/stormlightlabs/poptart_bluesky/issues

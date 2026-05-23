@@ -22,7 +22,7 @@ posts, notifications, feeds, and lists.
 
 ```yaml
 dependencies:
-  poptart_bluesky_moderation: ^0.1.0
+  poptart_bluesky_moderation: ^0.2.0
   bluesky_poptart: ^0.1.1
   poptart_lex: ^0.1.0
 ```
