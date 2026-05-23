@@ -12,20 +12,14 @@ import '../behaviors/moderation_opts.dart';
 import '../labels.dart';
 import 'moderation_subject_user_list.dart';
 
-ModerationDecision decideUserList(
-  final ModerationSubjectUserList subject,
-  final ModerationOpts opts,
-) {
+ModerationDecision decideUserList(final ModerationSubjectUserList subject, final ModerationOpts opts) {
   final (creator, labels, uri) = subject.when(
     listViewBasic: (data) => (null, data.labels, data.uri.toString()),
     listView: (data) => (data.creator, data.labels, null),
   );
 
   if (creator != null) {
-    final decision = ModerationDecision.init(
-      did: creator.did,
-      me: creator.did == opts.userDid,
-    );
+    final decision = ModerationDecision.init(did: creator.did, me: creator.did == opts.userDid);
 
     for (final label in labels ?? const <Label>[]) {
       decision.addLabel(target: LabelTarget.content, label: label, opts: opts);
@@ -33,10 +27,7 @@ ModerationDecision decideUserList(
   }
 
   final creatorDid = AtUri(uri!).hostname;
-  final decision = ModerationDecision.init(
-    did: creatorDid,
-    me: creatorDid == opts.userDid,
-  );
+  final decision = ModerationDecision.init(did: creatorDid, me: creatorDid == opts.userDid);
 
   for (final label in labels ?? const <Label>[]) {
     decision.addLabel(target: LabelTarget.content, label: label, opts: opts);

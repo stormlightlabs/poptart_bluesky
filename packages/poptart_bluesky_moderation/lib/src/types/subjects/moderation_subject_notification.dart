@@ -11,9 +11,7 @@ import 'package:bluesky_poptart/app/bsky/notification/list_notifications/notific
 part 'moderation_subject_notification.freezed.dart';
 
 @Freezed(fromJson: false, toJson: false)
-abstract class ModerationSubjectNotification
-    with _$ModerationSubjectNotification {
-  const factory ModerationSubjectNotification.notification({
-    required Notification data,
-  }) = UModerationSubjectNotification;
+abstract class ModerationSubjectNotification with _$ModerationSubjectNotification {
+  const factory ModerationSubjectNotification.notification({required Notification data}) =
+      UModerationSubjectNotification;
 }

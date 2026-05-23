@@ -3,12 +3,7 @@
 // BSD-style license that can be found in the LICENSE file.
 
 export 'package:poptart_bluesky_moderation/src/moderation.dart'
-    show
-        moderatePost,
-        moderateProfile,
-        moderateNotification,
-        moderateFeedGenerator,
-        moderateUserList;
+    show moderatePost, moderateProfile, moderateNotification, moderateFeedGenerator, moderateUserList;
 
 export 'package:poptart_bluesky_moderation/src/decision.dart' show ModerationDecision;
 export 'package:poptart_bluesky_moderation/src/utils.dart'

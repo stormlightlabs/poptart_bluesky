@@ -23,11 +23,7 @@ void main() {
   group('.toFacets', () {
     test('case1', () async {
       final entities = Entities([
-        const Entity(
-          type: EntityType.handle,
-          value: 'shinyakato.dev',
-          indices: ByteIndices(start: 0, end: 0),
-        ),
+        const Entity(type: EntityType.handle, value: 'shinyakato.dev', indices: ByteIndices(start: 0, end: 0)),
       ]);
 
       final facets = await entities.toFacets();
@@ -36,10 +32,7 @@ void main() {
         {
           'index': {'byteStart': 0, 'byteEnd': 0},
           'features': [
-            {
-              '\$type': 'app.bsky.richtext.facet#mention',
-              'did': 'did:plc:iijrtk7ocored6zuziwmqq3c',
-            },
+            {'\$type': 'app.bsky.richtext.facet#mention', 'did': 'did:plc:iijrtk7ocored6zuziwmqq3c'},
           ],
         },
       ]);
@@ -47,11 +40,7 @@ void main() {
 
     test('case2', () async {
       final entities = Entities([
-        const Entity(
-          type: EntityType.handle,
-          value: 'a.bsky.social',
-          indices: ByteIndices(start: 0, end: 0),
-        ),
+        const Entity(type: EntityType.handle, value: 'a.bsky.social', indices: ByteIndices(start: 0, end: 0)),
       ]);
 
       final facets = await entities.toFacets();

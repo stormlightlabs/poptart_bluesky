@@ -16,22 +16,13 @@ import 'moderation_subject_notification.dart';
 import 'moderation_subject_profile.dart';
 import 'profile.dart';
 
-ModerationDecision decideNotification(
-  final ModerationSubjectNotification subject,
-  final ModerationOpts opts,
-) {
+ModerationDecision decideNotification(final ModerationSubjectNotification subject, final ModerationOpts opts) {
   final (author, labels) = switch (subject) {
-    UModerationSubjectNotification(data: final data) => (
-      data.author,
-      data.labels,
-    ),
+    UModerationSubjectNotification(data: final data) => (data.author, data.labels),
     _ => throw UnimplementedError(),
   };
 
-  final decision = ModerationDecision.init(
-    did: author.did,
-    me: author.did == opts.userDid,
-  );
+  final decision = ModerationDecision.init(did: author.did, me: author.did == opts.userDid);
 
   for (final label in labels ?? const <Label>[]) {
     decision.addLabel(target: LabelTarget.content, label: label, opts: opts);
@@ -39,9 +30,5 @@ ModerationDecision decideNotification(
 
   final profileSubject = ModerationSubjectProfile.profileView(data: author);
 
-  return ModerationDecision.merge([
-    decision,
-    decideAccount(profileSubject, opts),
-    decideProfile(profileSubject, opts),
-  ]);
+  return ModerationDecision.merge([decision, decideAccount(profileSubject, opts), decideProfile(profileSubject, opts)]);
 }

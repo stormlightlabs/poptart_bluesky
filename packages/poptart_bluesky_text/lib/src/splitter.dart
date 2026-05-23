@@ -44,8 +44,7 @@ final class _Splitter implements Splitter {
 
         final remainingWord = word.characters.skip(i).toString();
 
-        if (chunk.isNotEmpty &&
-            (chunk.length + remainingWord.characters.length + 1) > maxLength) {
+        if (chunk.isNotEmpty && (chunk.length + remainingWord.characters.length + 1) > maxLength) {
           chunks.add(BlueskyText(chunk.toString()));
           chunk.clear();
         }
@@ -56,8 +55,7 @@ final class _Splitter implements Splitter {
 
         chunk.write(remainingWord);
       } else {
-        if (chunk.isNotEmpty &&
-            (chunk.length + word.characters.length + 1) > maxLength) {
+        if (chunk.isNotEmpty && (chunk.length + word.characters.length + 1) > maxLength) {
           chunks.add(BlueskyText(chunk.toString()));
           chunk.clear();
         }

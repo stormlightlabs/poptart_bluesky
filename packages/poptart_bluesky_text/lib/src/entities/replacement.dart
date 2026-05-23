@@ -6,14 +6,7 @@
 import 'facetable.dart';
 
 final class Replacement {
-  const Replacement(
-    this.key,
-    this.value,
-    this.start,
-    this.end,
-    this.source,
-    this.factors,
-  );
+  const Replacement(this.key, this.value, this.start, this.end, this.source, this.factors);
 
   final String key;
   final String value;
@@ -24,9 +17,4 @@ final class Replacement {
   final List<ReplacementFactor> factors;
 }
 
-enum ReplacementFactor {
-  linkHttpProtocol,
-  linkHttpsProtocol,
-  linkShortening,
-  markdownLink,
-}
+enum ReplacementFactor { linkHttpProtocol, linkHttpsProtocol, linkShortening, markdownLink }

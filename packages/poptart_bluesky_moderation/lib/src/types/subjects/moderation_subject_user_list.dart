@@ -13,10 +13,8 @@ part 'moderation_subject_user_list.freezed.dart';
 
 @Freezed(fromJson: false, toJson: false)
 abstract class ModerationSubjectUserList with _$ModerationSubjectUserList {
-  const factory ModerationSubjectUserList.listViewBasic({
-    required ListViewBasic data,
-  }) = UModerationSubjectUserListListViewBasic;
+  const factory ModerationSubjectUserList.listViewBasic({required ListViewBasic data}) =
+      UModerationSubjectUserListListViewBasic;
 
-  const factory ModerationSubjectUserList.listView({required ListView data}) =
-      UModerationSubjectUserListListView;
+  const factory ModerationSubjectUserList.listView({required ListView data}) = UModerationSubjectUserListListView;
 }

@@ -31,15 +31,9 @@ const kMuteBehavior = {
   'contentView': ModerationBehavior.inform,
 };
 
-const kMuteWordBehavior = {
-  'contentList': ModerationBehavior.blur,
-  'contentView': ModerationBehavior.blur,
-};
+const kMuteWordBehavior = {'contentList': ModerationBehavior.blur, 'contentView': ModerationBehavior.blur};
 
-const kHideBehavior = {
-  'contentList': ModerationBehavior.blur,
-  'contentView': ModerationBehavior.blur,
-};
+const kHideBehavior = {'contentList': ModerationBehavior.blur, 'contentView': ModerationBehavior.blur};
 
 const kNoopBehavior = {};
 

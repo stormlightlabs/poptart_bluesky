@@ -12,6 +12,5 @@ part 'moderation_subject_post.freezed.dart';
 
 @Freezed(fromJson: false, toJson: false)
 abstract class ModerationSubjectPost with _$ModerationSubjectPost {
-  const factory ModerationSubjectPost.postView({required PostView data}) =
-      UModerationSubjectPostPostView;
+  const factory ModerationSubjectPost.postView({required PostView data}) = UModerationSubjectPostPostView;
 }

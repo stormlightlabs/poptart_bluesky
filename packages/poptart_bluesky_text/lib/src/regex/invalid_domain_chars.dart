@@ -19,5 +19,4 @@ import 'spaces_group.dart';
 ///    invalid in domain names.
 /// - `[directionalMarkersGroup]` is designed to match any Unicode directional
 ///    markers.
-const invalidDomainChars =
-    '$punct$spacesGroup$invalidCharsGroup$directionalMarkersGroup';
+const invalidDomainChars = '$punct$spacesGroup$invalidCharsGroup$directionalMarkersGroup';

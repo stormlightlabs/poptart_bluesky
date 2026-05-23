@@ -54,20 +54,13 @@ final class ModerationDecision {
     for (final cause in this.causes) {
       causes.add(
         cause.when(
-          blocking: (data) =>
-              ModerationCause.blocking(data: data.copyWith(downgraded: true)),
-          blockedBy: (data) =>
-              ModerationCause.blockedBy(data: data.copyWith(downgraded: true)),
-          blockOther: (data) =>
-              ModerationCause.blockOther(data: data.copyWith(downgraded: true)),
-          label: (data) =>
-              ModerationCause.label(data: data.copyWith(downgraded: true)),
-          muted: (data) =>
-              ModerationCause.muted(data: data.copyWith(downgraded: true)),
-          muteWord: (data) =>
-              ModerationCause.muteWord(data: data.copyWith(downgraded: true)),
-          hidden: (data) =>
-              ModerationCause.hidden(data: data.copyWith(downgraded: true)),
+          blocking: (data) => ModerationCause.blocking(data: data.copyWith(downgraded: true)),
+          blockedBy: (data) => ModerationCause.blockedBy(data: data.copyWith(downgraded: true)),
+          blockOther: (data) => ModerationCause.blockOther(data: data.copyWith(downgraded: true)),
+          label: (data) => ModerationCause.label(data: data.copyWith(downgraded: true)),
+          muted: (data) => ModerationCause.muted(data: data.copyWith(downgraded: true)),
+          muteWord: (data) => ModerationCause.muteWord(data: data.copyWith(downgraded: true)),
+          hidden: (data) => ModerationCause.hidden(data: data.copyWith(downgraded: true)),
         ),
       );
     }
@@ -77,65 +70,47 @@ final class ModerationDecision {
 
   void addHidden() => causes.add(
     const ModerationCause.hidden(
-      data: ModerationCauseHidden(
-        source: ModerationCauseSource.user(data: ModerationCauseSourceUser()),
-      ),
+      data: ModerationCauseHidden(source: ModerationCauseSource.user(data: ModerationCauseSourceUser())),
     ),
   );
 
   void addMutedWord() => causes.add(
     const ModerationCause.muteWord(
-      data: ModerationCauseMuteWord(
-        source: ModerationCauseSource.user(data: ModerationCauseSourceUser()),
-      ),
+      data: ModerationCauseMuteWord(source: ModerationCauseSource.user(data: ModerationCauseSourceUser())),
     ),
   );
 
   void addBlocking() => causes.add(
     const ModerationCause.blocking(
-      data: ModerationCauseBlocking(
-        source: ModerationCauseSource.user(data: ModerationCauseSourceUser()),
-      ),
+      data: ModerationCauseBlocking(source: ModerationCauseSource.user(data: ModerationCauseSourceUser())),
     ),
   );
 
   void addBlockingByList(final ListViewBasic blockingByList) => causes.add(
     ModerationCause.blocking(
       data: ModerationCauseBlocking(
-        source: ModerationCauseSource.list(
-          data: ModerationCauseSourceList(list: blockingByList),
-        ),
+        source: ModerationCauseSource.list(data: ModerationCauseSourceList(list: blockingByList)),
       ),
     ),
   );
 
   void addBlockedBy() => causes.add(
     const ModerationCause.blockedBy(
-      data: ModerationCauseBlockedBy(
-        source: ModerationCauseSource.user(data: ModerationCauseSourceUser()),
-      ),
+      data: ModerationCauseBlockedBy(source: ModerationCauseSource.user(data: ModerationCauseSourceUser())),
     ),
   );
 
   void addBlockOther() => causes.add(
     const ModerationCause.blockOther(
-      data: ModerationCauseBlockOther(
-        source: ModerationCauseSource.user(data: ModerationCauseSourceUser()),
-      ),
+      data: ModerationCauseBlockOther(source: ModerationCauseSource.user(data: ModerationCauseSourceUser())),
     ),
   );
 
-  void addLabel({
-    required LabelTarget target,
-    required Label label,
-    required ModerationOpts opts,
-  }) {
+  void addLabel({required LabelTarget target, required Label label, required ModerationOpts opts}) {
     InterpretedLabelValueDefinition? labelDef;
     if (customLabelValueRegex.hasMatch(label.val)) {
       labelDef =
-          opts.labelDefs[label.src]
-              ?.where((e) => e.identifier == label.val)
-              .firstOrNull ??
+          opts.labelDefs[label.src]?.where((e) => e.identifier == label.val).firstOrNull ??
           kLabels[KnownLabelValue.valueOf(label.val)];
     } else {
       labelDef = kLabels[KnownLabelValue.valueOf(label.val)];
@@ -146,9 +121,7 @@ final class ModerationDecision {
     }
 
     final isSelf = label.src == did;
-    final labeler = isSelf
-        ? null
-        : opts.prefs.labelers.where((e) => e.did == label.src).firstOrNull;
+    final labeler = isSelf ? null : opts.prefs.labelers.where((e) => e.did == label.src).firstOrNull;
 
     if (!isSelf && labeler == null) {
       return; // skip labelers not configured by the user
@@ -160,8 +133,7 @@ final class ModerationDecision {
     LabelPreference labelPref = labelDef.defaultSetting;
     if (!labelDef.configurable) {
       labelPref = labelDef.defaultSetting;
-    } else if (labelDef.flags.contains(LabelValueDefinitionFlag.adult) &&
-        !opts.prefs.adultContentEnabled) {
+    } else if (labelDef.flags.contains(LabelValueDefinitionFlag.adult) && !opts.prefs.adultContentEnabled) {
       labelPref = LabelPreference.hide;
     } else if (labeler?.labels.containsKey(labelDef.identifier) ?? false) {
       labelPref = labeler!.labels[labelDef.identifier]!;
@@ -180,13 +152,10 @@ final class ModerationDecision {
     }
 
     int priority;
-    final severity = _measureModerationBehaviorSeverity(
-      labelDef.behaviors[target],
-    );
+    final severity = _measureModerationBehaviorSeverity(labelDef.behaviors[target]);
 
     if (labelDef.flags.contains(LabelValueDefinitionFlag.noOverride) ||
-        (labelDef.flags.contains(LabelValueDefinitionFlag.adult) &&
-            !opts.prefs.adultContentEnabled)) {
+        (labelDef.flags.contains(LabelValueDefinitionFlag.adult) && !opts.prefs.adultContentEnabled)) {
       priority = 1;
     } else if (labelPref == LabelPreference.hide) {
       priority = 2;
@@ -201,8 +170,7 @@ final class ModerationDecision {
     bool noOverride = false;
     if (labelDef.flags.contains(LabelValueDefinitionFlag.noOverride)) {
       noOverride = true;
-    } else if (labelDef.flags.contains(LabelValueDefinitionFlag.adult) &&
-        !opts.prefs.adultContentEnabled) {
+    } else if (labelDef.flags.contains(LabelValueDefinitionFlag.adult) && !opts.prefs.adultContentEnabled) {
       noOverride = true;
     }
 
@@ -210,12 +178,8 @@ final class ModerationDecision {
       ModerationCause.label(
         data: ModerationCauseLabel(
           source: isSelf || labeler != null
-              ? const ModerationCauseSource.user(
-                  data: ModerationCauseSourceUser(),
-                )
-              : ModerationCauseSource.labeler(
-                  data: ModerationCauseSourceLabeler(did: labeler!.did),
-                ),
+              ? const ModerationCauseSource.user(data: ModerationCauseSourceUser())
+              : ModerationCauseSource.labeler(data: ModerationCauseSourceLabeler(did: labeler!.did)),
           label: label,
           labelDef: labelDef,
           target: target,
@@ -230,18 +194,14 @@ final class ModerationDecision {
 
   void addMuted() => causes.add(
     const ModerationCause.muted(
-      data: ModerationCauseMuted(
-        source: ModerationCauseSource.user(data: ModerationCauseSourceUser()),
-      ),
+      data: ModerationCauseMuted(source: ModerationCauseSource.user(data: ModerationCauseSourceUser())),
     ),
   );
 
   void addMutedByList(final ListViewBasic mutedByList) => causes.add(
     ModerationCause.muted(
       data: ModerationCauseMuted(
-        source: ModerationCauseSource.list(
-          data: ModerationCauseSourceList(list: mutedByList),
-        ),
+        source: ModerationCauseSource.list(data: ModerationCauseSourceList(list: mutedByList)),
       ),
     ),
   );
@@ -269,8 +229,7 @@ final class ModerationDecision {
             blurs.add(cause);
           } else if (kBlockBehavior[context.name] == ModerationBehavior.alert) {
             alerts.add(cause);
-          } else if (kBlockBehavior[context.name] ==
-              ModerationBehavior.inform) {
+          } else if (kBlockBehavior[context.name] == ModerationBehavior.inform) {
             informs.add(cause);
           }
         }
@@ -300,11 +259,9 @@ final class ModerationDecision {
         if (!cause.downgraded) {
           if (kMuteWordBehavior[context.name] == ModerationBehavior.blur) {
             blurs.add(cause);
-          } else if (kMuteWordBehavior[context.name] ==
-              ModerationBehavior.alert) {
+          } else if (kMuteWordBehavior[context.name] == ModerationBehavior.alert) {
             alerts.add(cause);
-          } else if (kMuteWordBehavior[context.name] ==
-              ModerationBehavior.inform) {
+          } else if (kMuteWordBehavior[context.name] == ModerationBehavior.inform) {
             informs.add(cause);
           }
         }
@@ -330,8 +287,7 @@ final class ModerationDecision {
             filters.add(cause);
           }
         } else if (context.isContentList &&
-            (labelCause.target == LabelTarget.account ||
-                labelCause.target == LabelTarget.content)) {
+            (labelCause.target == LabelTarget.account || labelCause.target == LabelTarget.content)) {
           if (labelCause.setting == LabelPreference.hide && !me) {
             filters.add(cause);
           }
@@ -345,8 +301,7 @@ final class ModerationDecision {
             }
           } else if (labelCause.behavior[context] == ModerationBehavior.alert) {
             alerts.add(cause);
-          } else if (labelCause.behavior[context] ==
-              ModerationBehavior.inform) {
+          } else if (labelCause.behavior[context] == ModerationBehavior.inform) {
             informs.add(cause);
           }
         }
@@ -390,7 +345,5 @@ int _getCausePriority(final ModerationCause cause) => switch (cause) {
   UModerationCauseMuted(:final data) => data.priority,
   UModerationCauseMuteWord(:final data) => data.priority,
   UModerationCauseHidden(:final data) => data.priority,
-  _ => throw UnsupportedError(
-    'Not supported cause: $cause',
-  ), //! Should not happen
+  _ => throw UnsupportedError('Not supported cause: $cause'), //! Should not happen
 };

@@ -31,9 +31,7 @@ final class MarkdownLinksExtractor {
       if (!isValidUrl(match.markdownLinkUrl)) continue;
 
       final linkText = match.markdownLinkText;
-      final urlMatch = validUrlRegex.firstMatch(
-        text.value.substring(match.start),
-      );
+      final urlMatch = validUrlRegex.firstMatch(text.value.substring(match.start));
 
       if (urlMatch == null) continue;
 
@@ -55,9 +53,7 @@ final class MarkdownLinksExtractor {
           url: getPrefixedUri(linkUrl),
           indices: ByteIndices(
             start: text.value.toUtf8Index(match.start),
-            end: text.value.toUtf8Index(
-              match.start + linkText.length + linkUrl.length + _parensCount,
-            ),
+            end: text.value.toUtf8Index(match.start + linkText.length + linkUrl.length + _parensCount),
           ),
         ),
       );
@@ -72,8 +68,6 @@ final class MarkdownLinksExtractor {
     if (Uri.tryParse(url) == null) return false;
 
     //* Prevent users from linking to specific mentions text for their safety.
-    return !validMentionRegex.hasMatch(text) &&
-        !validHashtagRegex.hasMatch(text) &&
-        !validUrlRegex.hasMatch(text);
+    return !validMentionRegex.hasMatch(text) && !validHashtagRegex.hasMatch(text) && !validUrlRegex.hasMatch(text);
   }
 }

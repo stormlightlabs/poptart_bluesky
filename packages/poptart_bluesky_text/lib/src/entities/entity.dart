@@ -11,11 +11,7 @@ import 'byte_indices.dart';
 import 'facetable.dart';
 
 final class Entity implements Facetable {
-  const Entity({
-    required this.type,
-    required this.value,
-    required this.indices,
-  });
+  const Entity({required this.type, required this.value, required this.indices});
 
   final EntityType type;
   final String value;
@@ -35,10 +31,7 @@ final class Entity implements Facetable {
         try {
           final did = await api.findDID(handle: value, service: service);
 
-          facet['features'].add({
-            '\$type': 'app.bsky.richtext.facet#mention',
-            'did': did['did'],
-          });
+          facet['features'].add({'\$type': 'app.bsky.richtext.facet#mention', 'did': did['did']});
         } catch (error, stackTrace) {
           developer.log(
             'Failed to resolve Bluesky handle for rich text facet.',
@@ -51,17 +44,11 @@ final class Entity implements Facetable {
 
         break;
       case EntityType.link:
-        facet['features'].add({
-          '\$type': 'app.bsky.richtext.facet#link',
-          'uri': value,
-        });
+        facet['features'].add({'\$type': 'app.bsky.richtext.facet#link', 'uri': value});
 
         break;
       case EntityType.tag:
-        facet['features'].add({
-          '\$type': 'app.bsky.richtext.facet#tag',
-          'tag': value,
-        });
+        facet['features'].add({'\$type': 'app.bsky.richtext.facet#tag', 'tag': value});
 
         break;
       case EntityType.markdownLink:

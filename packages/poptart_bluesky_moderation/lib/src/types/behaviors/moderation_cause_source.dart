@@ -14,15 +14,10 @@ part 'moderation_cause_source.freezed.dart';
 
 @Freezed(fromJson: false, toJson: false)
 abstract class ModerationCauseSource with _$ModerationCauseSource {
-  const factory ModerationCauseSource.user({
-    required ModerationCauseSourceUser data,
-  }) = UModerationCauseSourceUser;
+  const factory ModerationCauseSource.user({required ModerationCauseSourceUser data}) = UModerationCauseSourceUser;
 
-  const factory ModerationCauseSource.list({
-    required ModerationCauseSourceList data,
-  }) = UModerationCauseSourceList;
+  const factory ModerationCauseSource.list({required ModerationCauseSourceList data}) = UModerationCauseSourceList;
 
-  const factory ModerationCauseSource.labeler({
-    required ModerationCauseSourceLabeler data,
-  }) = UModerationCauseSourceLabeler;
+  const factory ModerationCauseSource.labeler({required ModerationCauseSourceLabeler data}) =
+      UModerationCauseSourceLabeler;
 }

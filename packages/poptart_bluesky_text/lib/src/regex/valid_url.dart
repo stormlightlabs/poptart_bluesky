@@ -34,6 +34,5 @@ extension ValidUrlRegexExtension on RegExpMatch {
   String get path => group(7) ?? '';
   String get query => group(8) ?? '';
 
-  String _getPortNumber(final String? source) =>
-      source == null ? '' : ':$source';
+  String _getPortNumber(final String? source) => source == null ? '' : ':$source';
 }

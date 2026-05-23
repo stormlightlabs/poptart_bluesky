@@ -7,6 +7,5 @@ export 'package:poptart_bluesky_text/src/config/link_config.dart';
 export 'package:poptart_bluesky_text/src/entities/byte_indices.dart';
 export 'package:poptart_bluesky_text/src/entities/entities.dart';
 export 'package:poptart_bluesky_text/src/entities/entity.dart';
-export 'package:poptart_bluesky_text/src/utils.dart'
-    show isEmojiOnly, getGraphemeLength;
+export 'package:poptart_bluesky_text/src/utils.dart' show isEmojiOnly, getGraphemeLength;
 export 'package:poptart_bluesky_text/src/entities/length_exceeded_entity.dart';

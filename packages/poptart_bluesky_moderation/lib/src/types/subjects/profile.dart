@@ -13,23 +13,11 @@ import '../behaviors/moderation_opts.dart';
 import '../labels.dart';
 import 'moderation_subject_profile.dart';
 
-ModerationDecision decideProfile(
-  final ModerationSubjectProfile subject,
-  final ModerationOpts opts,
-) {
+ModerationDecision decideProfile(final ModerationSubjectProfile subject, final ModerationOpts opts) {
   final (did, labels) = switch (subject) {
-    UModerationSubjectProfileProfileViewBasic(data: final data) => (
-      data.did,
-      data.labels,
-    ),
-    UModerationSubjectProfileProfileView(data: final data) => (
-      data.did,
-      data.labels,
-    ),
-    UModerationSubjectProfileProfileViewDetailed(data: final data) => (
-      data.did,
-      data.labels,
-    ),
+    UModerationSubjectProfileProfileViewBasic(data: final data) => (data.did, data.labels),
+    UModerationSubjectProfileProfileView(data: final data) => (data.did, data.labels),
+    UModerationSubjectProfileProfileViewDetailed(data: final data) => (data.did, data.labels),
     _ => throw UnimplementedError(),
   };
 
@@ -47,7 +35,5 @@ List<Label> _filterProfileLabels(final List<Label>? labels) {
     return const [];
   }
 
-  return labels
-      .where((e) => e.uri.toString().endsWith('/app.bsky.actor.profile/self'))
-      .toList();
+  return labels.where((e) => e.uri.toString().endsWith('/app.bsky.actor.profile/self')).toList();
 }

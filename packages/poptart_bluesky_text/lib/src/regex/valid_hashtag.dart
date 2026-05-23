@@ -13,11 +13,7 @@ const validHashtag =
     '($hashtagAlphaNumeric*$hashtagAlpha$hashtagAlphaNumeric*|[$hashtagEmoji]+)'
     '(?<![$hashtagConcatChars])';
 
-final validHashtagRegex = RegExp(
-  validHashtag,
-  caseSensitive: false,
-  multiLine: true,
-);
+final validHashtagRegex = RegExp(validHashtag, caseSensitive: false, multiLine: true);
 
 extension ValidHashtagRegexExtension on RegExpMatch {
   String get boundary => group(1) ?? '';

@@ -21,30 +21,19 @@ abstract class ModerationCause with _$ModerationCause {
   // ignore: unused_element
   const ModerationCause._();
 
-  const factory ModerationCause.blocking({
-    required ModerationCauseBlocking data,
-  }) = UModerationCauseBlocking;
+  const factory ModerationCause.blocking({required ModerationCauseBlocking data}) = UModerationCauseBlocking;
 
-  const factory ModerationCause.blockedBy({
-    required ModerationCauseBlockedBy data,
-  }) = UModerationCauseBlockedBy;
+  const factory ModerationCause.blockedBy({required ModerationCauseBlockedBy data}) = UModerationCauseBlockedBy;
 
-  const factory ModerationCause.blockOther({
-    required ModerationCauseBlockOther data,
-  }) = UModerationCauseBlockOther;
+  const factory ModerationCause.blockOther({required ModerationCauseBlockOther data}) = UModerationCauseBlockOther;
 
-  const factory ModerationCause.label({required ModerationCauseLabel data}) =
-      UModerationCauseLabel;
+  const factory ModerationCause.label({required ModerationCauseLabel data}) = UModerationCauseLabel;
 
-  const factory ModerationCause.muted({required ModerationCauseMuted data}) =
-      UModerationCauseMuted;
+  const factory ModerationCause.muted({required ModerationCauseMuted data}) = UModerationCauseMuted;
 
-  const factory ModerationCause.muteWord({
-    required ModerationCauseMuteWord data,
-  }) = UModerationCauseMuteWord;
+  const factory ModerationCause.muteWord({required ModerationCauseMuteWord data}) = UModerationCauseMuteWord;
 
-  const factory ModerationCause.hidden({required ModerationCauseHidden data}) =
-      UModerationCauseHidden;
+  const factory ModerationCause.hidden({required ModerationCauseHidden data}) = UModerationCauseHidden;
 
   bool get downgraded => when(
     blocking: (data) => data.downgraded,

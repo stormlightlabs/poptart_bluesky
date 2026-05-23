@@ -23,11 +23,7 @@ const formatter = Formatter();
 sealed class Formatter {
   const factory Formatter() = _Formatter;
 
-  (BlueskyText, Replacements?) execute(
-    final BlueskyText text,
-    final bool enableMarkdown,
-    final LinkConfig? linkConfig,
-  );
+  (BlueskyText, Replacements?) execute(final BlueskyText text, final bool enableMarkdown, final LinkConfig? linkConfig);
 }
 
 final class _Formatter implements Formatter {
@@ -39,16 +35,10 @@ final class _Formatter implements Formatter {
     final bool enableMarkdown,
     final LinkConfig? linkConfig,
   ) {
-    final markdownLinks = enableMarkdown
-        ? markdownLinksExtractor.execute(text)
-        : const <MarkdownLinkEntity>[];
+    final markdownLinks = enableMarkdown ? markdownLinksExtractor.execute(text) : const <MarkdownLinkEntity>[];
     final links = linksExtractor.execute(
       text,
-      ExtractorConfig(
-        markdownLinks: markdownLinks,
-        enableMarkdown: enableMarkdown,
-        fromFormat: true,
-      ),
+      ExtractorConfig(markdownLinks: markdownLinks, enableMarkdown: enableMarkdown, fromFormat: true),
     );
 
     if (markdownLinks.isEmpty && links.isEmpty) return (text, null);
@@ -61,21 +51,10 @@ final class _Formatter implements Formatter {
 
     final replacements = Replacements(text.value, formatted.$2);
 
-    return (
-      BlueskyText(
-        formatted.$1,
-        enableMarkdown: enableMarkdown,
-        replacements: replacements,
-      ),
-      replacements,
-    );
+    return (BlueskyText(formatted.$1, enableMarkdown: enableMarkdown, replacements: replacements), replacements);
   }
 
-  (String, List<Replacement>) _format(
-    final String value,
-    final List<Facetable> entities,
-    final LinkConfig linkConfig,
-  ) {
+  (String, List<Replacement>) _format(final String value, final List<Facetable> entities, final LinkConfig linkConfig) {
     final buffer = StringBuffer();
     final replacements = <Replacement>[];
 
@@ -84,9 +63,7 @@ final class _Formatter implements Formatter {
     for (final entity in entities) {
       final before = utf8.decode(bytes.sublist(lastEnd, entity.indices.start));
 
-      String after = utf8.decode(
-        bytes.sublist(entity.indices.start, entity.indices.end),
-      );
+      String after = utf8.decode(bytes.sublist(entity.indices.start, entity.indices.end));
 
       buffer.write(before);
 
@@ -95,9 +72,7 @@ final class _Formatter implements Formatter {
         replacements.add(
           Replacement(
             entity.text,
-            !entity.url.startsWith('http')
-                ? '$httpsPrefix${entity.url}'
-                : entity.url,
+            !entity.url.startsWith('http') ? '$httpsPrefix${entity.url}' : entity.url,
             start,
             start + entity.text.length,
             entity,
@@ -135,10 +110,7 @@ final class _Formatter implements Formatter {
     return (buffer.toString(), replacements);
   }
 
-  (String, List<ReplacementFactor>) _toShortLink(
-    final String source,
-    final LinkConfig linkConfig,
-  ) {
+  (String, List<ReplacementFactor>) _toShortLink(final String source, final LinkConfig linkConfig) {
     final match = validUrlRegex.firstMatch(source)!;
     final protocol = match.protocol;
     final domain = getFirstValidDomain(match.domain);
@@ -154,11 +126,7 @@ final class _Formatter implements Formatter {
 
       if (protocol.isNotEmpty) {
         //* Only if actually shortened.
-        factors.add(
-          protocol == httpsPrefix
-              ? ReplacementFactor.linkHttpsProtocol
-              : ReplacementFactor.linkHttpProtocol,
-        );
+        factors.add(protocol == httpsPrefix ? ReplacementFactor.linkHttpsProtocol : ReplacementFactor.linkHttpProtocol);
       }
     } else {
       domainPart = '$protocol$domain$portNumber';
@@ -167,10 +135,7 @@ final class _Formatter implements Formatter {
     final pathPart = '$urlPath$urlQuery';
 
     if (linkConfig.enableShortening && pathPart.length > 15) {
-      return (
-        '$domainPart${_getShortenedPath(pathPart)}',
-        factors..add(ReplacementFactor.linkShortening),
-      );
+      return ('$domainPart${_getShortenedPath(pathPart)}', factors..add(ReplacementFactor.linkShortening));
     }
 
     // Remove trailing slash as it's unnecessary.

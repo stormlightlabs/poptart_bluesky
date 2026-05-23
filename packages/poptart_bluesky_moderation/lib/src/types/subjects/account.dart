@@ -12,26 +12,11 @@ import '../behaviors/moderation_opts.dart';
 import '../labels.dart';
 import 'moderation_subject_profile.dart';
 
-ModerationDecision decideAccount(
-  final ModerationSubjectProfile subject,
-  final ModerationOpts opts,
-) {
+ModerationDecision decideAccount(final ModerationSubjectProfile subject, final ModerationOpts opts) {
   final (did, viewer, labels) = switch (subject) {
-    UModerationSubjectProfileProfileViewBasic(data: final data) => (
-      data.did,
-      data.viewer,
-      data.labels,
-    ),
-    UModerationSubjectProfileProfileView(data: final data) => (
-      data.did,
-      data.viewer,
-      data.labels,
-    ),
-    UModerationSubjectProfileProfileViewDetailed(data: final data) => (
-      data.did,
-      data.viewer,
-      data.labels,
-    ),
+    UModerationSubjectProfileProfileViewBasic(data: final data) => (data.did, data.viewer, data.labels),
+    UModerationSubjectProfileProfileView(data: final data) => (data.did, data.viewer, data.labels),
+    UModerationSubjectProfileProfileViewDetailed(data: final data) => (data.did, data.viewer, data.labels),
     _ => throw UnimplementedError(),
   };
 
@@ -72,10 +57,6 @@ List<Label> _filterAccountLabels(final List<Label>? labels) {
   }
 
   return labels
-      .where(
-        (e) =>
-            !e.uri.toString().endsWith('/app.bsky.actor.profile/self') ||
-            e.val == '!no-unauthenticated',
-      )
+      .where((e) => !e.uri.toString().endsWith('/app.bsky.actor.profile/self') || e.val == '!no-unauthenticated')
       .toList();
 }

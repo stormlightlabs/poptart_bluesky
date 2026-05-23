@@ -21,10 +21,7 @@ const _kLanguageExceptions = [
   'vi', // Vietnamese
 ];
 
-final _leadingTrailingPunctuationRegex = RegExp(
-  r'(?:^\p{P}+|\p{P}+$)',
-  unicode: true,
-);
+final _leadingTrailingPunctuationRegex = RegExp(r'(?:^\p{P}+|\p{P}+$)', unicode: true);
 final _whitespacePunctuationRegex = RegExp(r'(?:\s|\p{P})+?', unicode: true);
 final _wordBoundaryRegex = RegExp(r'[\s\n\t\r\f\v]+?');
 final _punctuationRegex = RegExp(r'\p{P}+', unicode: true);
@@ -42,10 +39,7 @@ bool hasMutedWord({
     if (outlineTags != null) ...outlineTags.map((e) => e.toLowerCase()),
     if (facets != null)
       ...facets
-          .map(
-            (e) =>
-                e.features.whereType<URichtextFacetFeaturesRichtextFacetTag>(),
-          )
+          .map((e) => e.features.whereType<URichtextFacetFeaturesRichtextFacetTag>())
           .where((e) => e.isNotEmpty)
           .map((e) => e.first.data.tag.toLowerCase()),
   }.toList();
@@ -55,39 +49,29 @@ bool hasMutedWord({
     final postText = text.toLowerCase();
 
     if (tags.contains(mutedWord)) return true;
-    if (!mute.targets.contains(
-      const MutedWordTarget.knownValue(data: KnownMutedWordTarget.content),
-    )) {
+    if (!mute.targets.contains(const MutedWordTarget.knownValue(data: KnownMutedWordTarget.content))) {
       continue;
     }
 
-    if ((mutedWord.characters.length == 1 || hasExceptionLanguage) &&
-        postText.contains(mutedWord)) {
+    if ((mutedWord.characters.length == 1 || hasExceptionLanguage) && postText.contains(mutedWord)) {
       return true;
     }
     if (mutedWord.length > postText.length) continue;
     if (mutedWord == postText) return true;
-    if (_whitespacePunctuationRegex.hasMatch(mutedWord) &&
-        postText.contains(mutedWord)) {
+    if (_whitespacePunctuationRegex.hasMatch(mutedWord) && postText.contains(mutedWord)) {
       return true;
     }
 
     for (final word in postText.split(_wordBoundaryRegex)) {
       if (word == mutedWord) return true;
 
-      final wordTrimmedPunctuation = word.replaceAll(
-        _leadingTrailingPunctuationRegex,
-        '',
-      );
+      final wordTrimmedPunctuation = word.replaceAll(_leadingTrailingPunctuationRegex, '');
 
       if (mutedWord == wordTrimmedPunctuation) return true;
       if (mutedWord.length > wordTrimmedPunctuation.length) continue;
 
       if (_punctuationRegex.hasMatch(wordTrimmedPunctuation)) {
-        final spacedWord = wordTrimmedPunctuation.replaceAll(
-          _punctuationRegex,
-          ' ',
-        );
+        final spacedWord = wordTrimmedPunctuation.replaceAll(_punctuationRegex, ' ');
         if (spacedWord == mutedWord) return true;
 
         final contiguousWord = spacedWord.replaceAll(_spaceRegex, '');

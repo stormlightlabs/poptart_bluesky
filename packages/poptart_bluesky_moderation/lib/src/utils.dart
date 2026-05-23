@@ -41,22 +41,16 @@ InterpretedLabelValueDefinition getInterpretedLabelValueDefinition({
     // target=account, blurs=content
     accountBehavior[ModerationBehaviorContext.profileList] = alertOrInform;
     accountBehavior[ModerationBehaviorContext.profileView] = alertOrInform;
-    accountBehavior[ModerationBehaviorContext.contentList] =
-        ModerationBehavior.blur;
-    accountBehavior[ModerationBehaviorContext.contentView] = adultOnly
-        ? ModerationBehavior.blur
-        : alertOrInform;
+    accountBehavior[ModerationBehaviorContext.contentList] = ModerationBehavior.blur;
+    accountBehavior[ModerationBehaviorContext.contentView] = adultOnly ? ModerationBehavior.blur : alertOrInform;
 
     // target=profile, blurs=content
     profileBehavior[ModerationBehaviorContext.profileList] = alertOrInform;
     profileBehavior[ModerationBehaviorContext.profileView] = alertOrInform;
 
     // target=content, blurs=content
-    contentBehavior[ModerationBehaviorContext.contentList] =
-        ModerationBehavior.blur;
-    contentBehavior[ModerationBehaviorContext.contentView] = adultOnly
-        ? ModerationBehavior.blur
-        : alertOrInform;
+    contentBehavior[ModerationBehaviorContext.contentList] = ModerationBehavior.blur;
+    contentBehavior[ModerationBehaviorContext.contentView] = adultOnly ? ModerationBehavior.blur : alertOrInform;
   } else if (blurs == 'media') {
     // target=account, blurs=media
     accountBehavior[ModerationBehaviorContext.profileList] = alertOrInform;
@@ -71,8 +65,7 @@ InterpretedLabelValueDefinition getInterpretedLabelValueDefinition({
     profileBehavior[ModerationBehaviorContext.banner] = ModerationBehavior.blur;
 
     // target=content, blurs=media
-    contentBehavior[ModerationBehaviorContext.contentMedia] =
-        ModerationBehavior.blur;
+    contentBehavior[ModerationBehaviorContext.contentMedia] = ModerationBehavior.blur;
   } else if (blurs == 'none') {
     // target=account, blurs=none
     accountBehavior[ModerationBehaviorContext.profileList] = alertOrInform;
@@ -95,10 +88,7 @@ InterpretedLabelValueDefinition getInterpretedLabelValueDefinition({
     blurs: blurs,
     configurable: true,
     defaultSetting: defaultSetting,
-    flags: [
-      LabelValueDefinitionFlag.noSelf,
-      if (adultOnly) LabelValueDefinitionFlag.adult,
-    ],
+    flags: [LabelValueDefinitionFlag.noSelf, if (adultOnly) LabelValueDefinitionFlag.adult],
     definedBy: definedBy,
     behaviors: {
       LabelTarget.account: accountBehavior,
@@ -108,16 +98,12 @@ InterpretedLabelValueDefinition getInterpretedLabelValueDefinition({
   );
 }
 
-List<InterpretedLabelValueDefinition> getInterpretedLabelValueDefinitions(
-  final LabelerViewDetailed labelerView,
-) {
+List<InterpretedLabelValueDefinition> getInterpretedLabelValueDefinitions(final LabelerViewDetailed labelerView) {
   return labelerView.policies.labelValueDefinitions
           ?.map(
             (e) => getInterpretedLabelValueDefinition(
               identifier: e.identifier,
-              defaultSetting:
-                  LabelPreference.valueOf(e.defaultSetting?.toJson()) ??
-                  LabelPreference.warn,
+              defaultSetting: LabelPreference.valueOf(e.defaultSetting?.toJson()) ?? LabelPreference.warn,
               severity: e.severity.toJson(),
               blurs: e.blurs.toJson(),
               adultOnly: e.adultOnly ?? true,
@@ -129,8 +115,7 @@ List<InterpretedLabelValueDefinition> getInterpretedLabelValueDefinitions(
 }
 
 extension PoptartClientLabelerExtension on PoptartClient {
-  Future<Map<String, List<InterpretedLabelValueDefinition>>>
-  getLabelDefinitions(final ModerationPrefs prefs) async {
+  Future<Map<String, List<InterpretedLabelValueDefinition>>> getLabelDefinitions(final ModerationPrefs prefs) async {
     final dids = <String>{
       _kBskyLabelerDid, // need when they don't have LabelersPref in their pref
       ...prefs.labelers.map((e) => e.did),
@@ -147,8 +132,7 @@ extension PoptartClientLabelerExtension on PoptartClient {
       if (labeler.isNotLabelerViewDetailed) continue;
       final labelerViewDetailed = labeler.labelerViewDetailed!;
 
-      labelDefs[labelerViewDetailed.creator.did] =
-          getInterpretedLabelValueDefinitions(labelerViewDetailed);
+      labelDefs[labelerViewDetailed.creator.did] = getInterpretedLabelValueDefinitions(labelerViewDetailed);
     }
 
     return labelDefs;
@@ -156,9 +140,7 @@ extension PoptartClientLabelerExtension on PoptartClient {
 }
 
 extension PreferencesExtension on ActorGetPreferencesOutput {
-  ModerationPrefs getModerationPrefs({
-    List<String> appLabelers = const [_kBskyLabelerDid],
-  }) {
+  ModerationPrefs getModerationPrefs({List<String> appLabelers = const [_kBskyLabelerDid]}) {
     bool adultContentEnabled = false;
     final labels = <String, LabelPreference>{};
     final mutedWords = <MutedWord>[];
@@ -171,16 +153,12 @@ extension PreferencesExtension on ActorGetPreferencesOutput {
         adultContentEnabled = preference.adultContentPref!.enabled;
       } else if (preference.isLabelersPref) {
         labelers.addAll(
-          preference.labelersPref!.labelers.map(
-            (e) => {'did': e.did, 'labels': <String, LabelPreference>{}},
-          ),
+          preference.labelersPref!.labelers.map((e) => {'did': e.did, 'labels': <String, LabelPreference>{}}),
         );
       } else if (preference.isMutedWordsPref) {
         mutedWords.addAll(preference.mutedWordsPref!.items);
       } else if (preference.isHiddenPostsPref) {
-        hiddenPosts.addAll(
-          preference.hiddenPostsPref!.items.map((e) => e.toString()),
-        );
+        hiddenPosts.addAll(preference.hiddenPostsPref!.items.map((e) => e.toString()));
       } else if (preference.isContentLabelPref) {
         labelPrefs.add(preference.contentLabelPref!);
       }
@@ -190,9 +168,7 @@ extension PreferencesExtension on ActorGetPreferencesOutput {
       final pref = _getModerationLabelPreference(labelPref.visibility.toJson());
 
       if (labelPref.labelerDid != null && labelers.isNotEmpty) {
-        final labeler = labelers
-            .where((e) => e['did'] == labelPref.labelerDid)
-            .firstOrNull;
+        final labeler = labelers.where((e) => e['did'] == labelPref.labelerDid).firstOrNull;
 
         if (labeler != null && labeler.isNotEmpty) {
           labeler['labels'][labelPref.label] = pref;
@@ -204,22 +180,11 @@ extension PreferencesExtension on ActorGetPreferencesOutput {
 
     return ModerationPrefs(
       adultContentEnabled: adultContentEnabled,
-      labels: {
-        ...kDefaultLabelSettings.map((k, v) => MapEntry(k.value, v)),
-        ...labels,
-      },
-      labelers:
-          [
-                ...appLabelers.map(
-                  (e) => {'did': e, 'labels': <String, LabelPreference>{}},
-                ),
-                ...labelers,
-              ]
-              .map(
-                (e) =>
-                    ModerationPrefsLabeler(did: e['did'], labels: e['labels']),
-              )
-              .toList(),
+      labels: {...kDefaultLabelSettings.map((k, v) => MapEntry(k.value, v)), ...labels},
+      labelers: [
+        ...appLabelers.map((e) => {'did': e, 'labels': <String, LabelPreference>{}}),
+        ...labelers,
+      ].map((e) => ModerationPrefsLabeler(did: e['did'], labels: e['labels'])).toList(),
       mutedWords: mutedWords,
       hiddenPosts: hiddenPosts,
     );
@@ -236,11 +201,7 @@ extension PreferencesExtension on ActorGetPreferencesOutput {
   }
 
   String _getModerationLabel(final String label) {
-    const normalizedLabelAliases = <String, String>{
-      'gore': 'graphic-media',
-      'nsfw': 'porn',
-      'suggestive': 'sexual',
-    };
+    const normalizedLabelAliases = <String, String>{'gore': 'graphic-media', 'nsfw': 'porn', 'suggestive': 'sexual'};
 
     if (normalizedLabelAliases.containsKey(label)) {
       return normalizedLabelAliases[label]!;
@@ -255,16 +216,9 @@ Map<String, String> getLabelerHeaders(final ModerationPrefs? prefs) {
     return _getLabelerHeaders(const [_kBskyLabelerDid]);
   }
 
-  return _getLabelerHeaders([
-    _kBskyLabelerDid,
-    ...prefs.labelers.map((e) => e.did).where((e) => e.startsWith('did:')),
-  ]);
+  return _getLabelerHeaders([_kBskyLabelerDid, ...prefs.labelers.map((e) => e.did).where((e) => e.startsWith('did:'))]);
 }
 
 Map<String, String> _getLabelerHeaders(final List<String> dids) => {
-  'atproto-accept-labelers': dids
-      .toSet()
-      .take(10)
-      .map((str) => '$str;redact')
-      .join(', '),
+  'atproto-accept-labelers': dids.toSet().take(10).map((str) => '$str;redact').join(', '),
 };

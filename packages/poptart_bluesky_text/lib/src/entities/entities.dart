@@ -14,9 +14,7 @@ class Entities extends UnmodifiableListView<Entity> {
 
   /// Returns the collection of facet.
   Future<List<Map<String, dynamic>>> toFacets({String? service}) async {
-    final facets = await Future.wait(
-      map((entity) => entity.toFacet(service: service)),
-    );
+    final facets = await Future.wait(map((entity) => entity.toFacet(service: service)));
 
     return facets..removeWhere((e) => e.isEmpty);
   }

@@ -2,10 +2,7 @@
 /// processed and formatted within a text.
 final class LinkConfig {
   /// Creates a [LinkConfig] instance with the specified configuration options.
-  const LinkConfig({
-    this.excludeProtocol = false,
-    this.enableShortening = false,
-  });
+  const LinkConfig({this.excludeProtocol = false, this.enableShortening = false});
 
   /// Whether to exclude the protocol (e.g., "https://") when processing links.
   final bool excludeProtocol;

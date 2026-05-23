@@ -21,31 +21,20 @@ void main() {
 
   group('.toFacet', () {
     test('case1', () async {
-      const entity = Entity(
-        type: EntityType.handle,
-        value: 'shinyakato.dev',
-        indices: ByteIndices(start: 0, end: 0),
-      );
+      const entity = Entity(type: EntityType.handle, value: 'shinyakato.dev', indices: ByteIndices(start: 0, end: 0));
 
       final facet = await entity.toFacet();
 
       expect(facet, {
         'index': {'byteStart': 0, 'byteEnd': 0},
         'features': [
-          {
-            '\$type': 'app.bsky.richtext.facet#mention',
-            'did': 'did:plc:iijrtk7ocored6zuziwmqq3c',
-          },
+          {'\$type': 'app.bsky.richtext.facet#mention', 'did': 'did:plc:iijrtk7ocored6zuziwmqq3c'},
         ],
       });
     });
 
     test('case2', () async {
-      const entity = Entity(
-        type: EntityType.handle,
-        value: '@a.bsky.social',
-        indices: ByteIndices(start: 0, end: 0),
-      );
+      const entity = Entity(type: EntityType.handle, value: '@a.bsky.social', indices: ByteIndices(start: 0, end: 0));
 
       final facet = await entity.toFacet();
 
@@ -53,11 +42,7 @@ void main() {
     });
 
     test('case3', () async {
-      const entity = Entity(
-        type: EntityType.handle,
-        value: '@a.bsky.social',
-        indices: ByteIndices(start: 0, end: 0),
-      );
+      const entity = Entity(type: EntityType.handle, value: '@a.bsky.social', indices: ByteIndices(start: 0, end: 0));
 
       final facet = await entity.toFacet();
 
@@ -76,40 +61,26 @@ void main() {
       expect(facet, {
         'index': {'byteStart': 0, 'byteEnd': 0},
         'features': [
-          {
-            '\$type': 'app.bsky.richtext.facet#link',
-            'uri': 'https://shinyakato.dev',
-          },
+          {'\$type': 'app.bsky.richtext.facet#link', 'uri': 'https://shinyakato.dev'},
         ],
       });
     });
 
     test('case5', () async {
-      const entity = Entity(
-        type: EntityType.handle,
-        value: 'shinyakato.dev',
-        indices: ByteIndices(start: 0, end: 0),
-      );
+      const entity = Entity(type: EntityType.handle, value: 'shinyakato.dev', indices: ByteIndices(start: 0, end: 0));
 
       final facet = await entity.toFacet(service: 'bsky.social');
 
       expect(facet, {
         'index': {'byteStart': 0, 'byteEnd': 0},
         'features': [
-          {
-            '\$type': 'app.bsky.richtext.facet#mention',
-            'did': 'did:plc:iijrtk7ocored6zuziwmqq3c',
-          },
+          {'\$type': 'app.bsky.richtext.facet#mention', 'did': 'did:plc:iijrtk7ocored6zuziwmqq3c'},
         ],
       });
     });
 
     test('case6', () async {
-      const entity = Entity(
-        type: EntityType.handle,
-        value: 'shinyakato.dev',
-        indices: ByteIndices(start: 0, end: 0),
-      );
+      const entity = Entity(type: EntityType.handle, value: 'shinyakato.dev', indices: ByteIndices(start: 0, end: 0));
 
       final facet = await entity.toFacet(service: 'test');
 
@@ -117,11 +88,7 @@ void main() {
     });
 
     test('case7', () async {
-      const entity = Entity(
-        type: EntityType.markdownLink,
-        value: '',
-        indices: ByteIndices(start: 0, end: 0),
-      );
+      const entity = Entity(type: EntityType.markdownLink, value: '', indices: ByteIndices(start: 0, end: 0));
 
       final facet = await entity.toFacet();
 

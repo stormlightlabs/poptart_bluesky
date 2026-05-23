@@ -14,15 +14,12 @@ part 'moderation_subject_profile.freezed.dart';
 
 @Freezed(fromJson: false, toJson: false)
 abstract class ModerationSubjectProfile with _$ModerationSubjectProfile {
-  const factory ModerationSubjectProfile.profileViewBasic({
-    required ProfileViewBasic data,
-  }) = UModerationSubjectProfileProfileViewBasic;
+  const factory ModerationSubjectProfile.profileViewBasic({required ProfileViewBasic data}) =
+      UModerationSubjectProfileProfileViewBasic;
 
-  const factory ModerationSubjectProfile.profileView({
-    required ProfileView data,
-  }) = UModerationSubjectProfileProfileView;
+  const factory ModerationSubjectProfile.profileView({required ProfileView data}) =
+      UModerationSubjectProfileProfileView;
 
-  const factory ModerationSubjectProfile.profileViewDetailed({
-    required ProfileViewDetailed data,
-  }) = UModerationSubjectProfileProfileViewDetailed;
+  const factory ModerationSubjectProfile.profileViewDetailed({required ProfileViewDetailed data}) =
+      UModerationSubjectProfileProfileViewDetailed;
 }

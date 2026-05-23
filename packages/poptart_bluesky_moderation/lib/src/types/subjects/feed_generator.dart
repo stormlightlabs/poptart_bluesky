@@ -16,18 +16,10 @@ import 'moderation_subject_feed_generator.dart';
 import 'moderation_subject_profile.dart';
 import 'profile.dart';
 
-ModerationDecision decideFeedGenerator(
-  final ModerationSubjectFeedGenerator subject,
-  final ModerationOpts opts,
-) {
-  final (creator, labels) = subject.when(
-    generatorView: (data) => (data.creator, data.labels),
-  );
+ModerationDecision decideFeedGenerator(final ModerationSubjectFeedGenerator subject, final ModerationOpts opts) {
+  final (creator, labels) = subject.when(generatorView: (data) => (data.creator, data.labels));
 
-  final decision = ModerationDecision.init(
-    did: creator.did,
-    me: creator.did == opts.userDid,
-  );
+  final decision = ModerationDecision.init(did: creator.did, me: creator.did == opts.userDid);
 
   for (final label in labels ?? const <Label>[]) {
     decision.addLabel(target: LabelTarget.content, label: label, opts: opts);
@@ -35,9 +27,5 @@ ModerationDecision decideFeedGenerator(
 
   final profileSubject = ModerationSubjectProfile.profileView(data: creator);
 
-  return ModerationDecision.merge([
-    decision,
-    decideAccount(profileSubject, opts),
-    decideProfile(profileSubject, opts),
-  ]);
+  return ModerationDecision.merge([decision, decideAccount(profileSubject, opts), decideProfile(profileSubject, opts)]);
 }
