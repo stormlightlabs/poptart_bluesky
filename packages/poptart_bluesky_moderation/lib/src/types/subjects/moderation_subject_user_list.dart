@@ -6,8 +6,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
-import 'package:poptart_lex/app/bsky/graph/defs/list_view.dart';
-import 'package:poptart_lex/app/bsky/graph/defs/list_view_basic.dart';
+import 'package:bluesky_poptart/app/bsky/graph/defs/list_view.dart';
+import 'package:bluesky_poptart/app/bsky/graph/defs/list_view_basic.dart';
 
 part 'moderation_subject_user_list.freezed.dart';
 

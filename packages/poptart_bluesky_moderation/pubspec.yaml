@@ -18,6 +18,7 @@ dependencies:
   characters: ^1.4.0
   poptart_core: ^0.1.0
   poptart_lex: ^0.1.0
+  bluesky_poptart: ^0.1.1
   freezed_annotation: ^3.1.0
 
 dev_dependencies:

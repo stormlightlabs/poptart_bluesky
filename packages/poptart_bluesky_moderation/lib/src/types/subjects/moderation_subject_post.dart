@@ -6,7 +6,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
-import 'package:poptart_lex/app/bsky/feed/defs/post_view.dart';
+import 'package:bluesky_poptart/app/bsky/feed/defs/post_view.dart';
 
 part 'moderation_subject_post.freezed.dart';
 

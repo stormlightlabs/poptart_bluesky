@@ -6,17 +6,17 @@
 import 'package:poptart_lex/com/atproto/label/defs.dart';
 
 // Project imports:
-import 'package:poptart_lex/app/bsky/actor/defs/muted_word.dart';
-import 'package:poptart_lex/app/bsky/actor/defs/viewer_state.dart';
-import 'package:poptart_lex/app/bsky/embed/record/union_view_record.dart';
-import 'package:poptart_lex/app/bsky/embed/record/view_blocked.dart';
-import 'package:poptart_lex/app/bsky/embed/record/view_record.dart';
-import 'package:poptart_lex/app/bsky/embed/record_with_media/union_main_media.dart';
-import 'package:poptart_lex/app/bsky/embed/record_with_media/union_view_media.dart';
-import 'package:poptart_lex/app/bsky/feed/defs/blocked_author.dart';
-import 'package:poptart_lex/app/bsky/feed/defs/union_post_view_embed.dart';
-import 'package:poptart_lex/app/bsky/feed/post/main.dart';
-import 'package:poptart_lex/app/bsky/feed/post/union_main_embed.dart';
+import 'package:bluesky_poptart/app/bsky/actor/defs/muted_word.dart';
+import 'package:bluesky_poptart/app/bsky/actor/defs/viewer_state.dart';
+import 'package:bluesky_poptart/app/bsky/embed/record/union_view_record.dart';
+import 'package:bluesky_poptart/app/bsky/embed/record/view_blocked.dart';
+import 'package:bluesky_poptart/app/bsky/embed/record/view_record.dart';
+import 'package:bluesky_poptart/app/bsky/embed/record_with_media/union_main_media.dart';
+import 'package:bluesky_poptart/app/bsky/embed/record_with_media/union_view_media.dart';
+import 'package:bluesky_poptart/app/bsky/feed/defs/blocked_author.dart';
+import 'package:bluesky_poptart/app/bsky/feed/defs/union_post_view_embed.dart';
+import 'package:bluesky_poptart/app/bsky/feed/post/main.dart';
+import 'package:bluesky_poptart/app/bsky/feed/post/union_main_embed.dart';
 import '../../decision.dart';
 import '../behaviors/moderation_opts.dart';
 import '../labels.dart';

@@ -8,7 +8,7 @@ import 'package:poptart_bluesky_moderation/src/types/moderation_behavior.dart';
 import 'package:poptart_bluesky_moderation/src/types/subjects/moderation_subject_post.dart';
 import 'package:poptart_bluesky_moderation/src/types/subjects/moderation_subject_profile.dart';
 import 'package:poptart_bluesky_moderation/src/utils.dart';
-import 'package:poptart_lex/app/bsky/feed/post/main.dart';
+import 'package:bluesky_poptart/app/bsky/feed/post/main.dart';
 import 'package:poptart_lex/com/atproto/label/defs.dart';
 import 'package:test/test.dart';
 

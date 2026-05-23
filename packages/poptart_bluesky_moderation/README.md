@@ -3,14 +3,14 @@
 Evaluate Bluesky moderation decisions for Poptart lexicon models.
 
 This package ports the high-level moderation facade from
-`atproto.dart`/`bluesky` to `poptart_lex` types. It handles label preferences,
+`atproto.dart`/`bluesky` to Poptart lexicon types. It handles label preferences,
 labeler preferences, muted words, hidden posts, and UI decisions for profiles,
 posts, notifications, feeds, and lists.
 
 ## Features
 
 - Evaluates `PostView`, `ProfileViewBasic`, notification, feed generator, and
-  list subjects from `poptart_lex`.
+  list subjects from `bluesky_poptart`.
 - Returns `ModerationDecision` objects with `getUI(...)` helpers.
 - Supports global labels, custom labels, labelers, hidden posts, and muted
   words.
@@ -23,6 +23,7 @@ posts, notifications, feeds, and lists.
 ```yaml
 dependencies:
   poptart_bluesky_moderation: ^0.1.0
+  bluesky_poptart: ^0.1.1
   poptart_lex: ^0.1.0
 ```
 
@@ -30,8 +31,8 @@ dependencies:
 
 ```dart
 import 'package:poptart_bluesky_moderation/poptart_bluesky_moderation.dart';
-import 'package:poptart_lex/app/bsky/actor/defs/profile_view_basic.dart';
-import 'package:poptart_lex/app/bsky/actor/defs/viewer_state.dart';
+import 'package:bluesky_poptart/app/bsky/actor/defs/profile_view_basic.dart';
+import 'package:bluesky_poptart/app/bsky/actor/defs/viewer_state.dart';
 import 'package:poptart_lex/com/atproto/label/defs.dart';
 
 void main() {

@@ -6,7 +6,7 @@
 import 'package:poptart_lex/com/atproto/label/defs.dart' hide KnownLabelValue;
 
 // Project imports:
-import 'package:poptart_lex/app/bsky/graph/defs/list_view_basic.dart';
+import 'package:bluesky_poptart/app/bsky/graph/defs/list_view_basic.dart';
 import 'types/behaviors/moderation_cause.dart';
 import 'types/behaviors/moderation_cause_block_other.dart';
 import 'types/behaviors/moderation_cause_blocked_by.dart';

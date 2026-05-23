@@ -4,12 +4,12 @@
 
 // Project imports:
 import 'package:poptart_core/poptart_core.dart';
-import 'package:poptart_lex/app/bsky/actor/defs/content_label_pref.dart';
-import 'package:poptart_lex/app/bsky/actor/defs/muted_word.dart';
-import 'package:poptart_lex/app/bsky/actor/defs/union_preferences.dart';
-import 'package:poptart_lex/app/bsky/actor/get_preferences/output.dart';
-import 'package:poptart_lex/app/bsky/labeler/get_services.dart';
-import 'package:poptart_lex/app/bsky/labeler/defs/labeler_view_detailed.dart';
+import 'package:bluesky_poptart/app/bsky/actor/defs/content_label_pref.dart';
+import 'package:bluesky_poptart/app/bsky/actor/defs/muted_word.dart';
+import 'package:bluesky_poptart/app/bsky/actor/defs/union_preferences.dart';
+import 'package:bluesky_poptart/app/bsky/actor/get_preferences/output.dart';
+import 'package:bluesky_poptart/app/bsky/labeler/get_services.dart';
+import 'package:bluesky_poptart/app/bsky/labeler/defs/labeler_view_detailed.dart';
 import 'types/behaviors/moderation_prefs.dart';
 import 'types/behaviors/moderation_prefs_labeler.dart';
 import 'types/const/labels.dart';

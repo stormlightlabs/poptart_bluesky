@@ -6,7 +6,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
-import 'package:poptart_lex/app/bsky/notification/list_notifications/notification.dart';
+import 'package:bluesky_poptart/app/bsky/notification/list_notifications/notification.dart';
 
 part 'moderation_subject_notification.freezed.dart';
 

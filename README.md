@@ -25,11 +25,13 @@ dependencies:
     poptart_bluesky_moderation: ^0.1.0
 ```
 
-`poptart_bluesky_moderation` works with models from `poptart_lex`. Add
-`poptart_lex` directly if your app constructs those models itself:
+`poptart_bluesky_moderation` works with Bluesky models from
+`bluesky_poptart` and AT Protocol label models from `poptart_lex`. Add them
+directly if your app constructs those models itself:
 
 ```yaml
 dependencies:
+    bluesky_poptart: ^0.1.1
     poptart_lex: ^0.1.0
 ```
 
@@ -57,8 +59,8 @@ Link and tag facets are built locally.
 
 ```dart
 import 'package:poptart_bluesky_moderation/poptart_bluesky_moderation.dart';
-import 'package:poptart_lex/app/bsky/actor/defs/profile_view_basic.dart';
-import 'package:poptart_lex/app/bsky/actor/defs/viewer_state.dart';
+import 'package:bluesky_poptart/app/bsky/actor/defs/profile_view_basic.dart';
+import 'package:bluesky_poptart/app/bsky/actor/defs/viewer_state.dart';
 import 'package:poptart_lex/com/atproto/label/defs.dart';
 
 void main() {

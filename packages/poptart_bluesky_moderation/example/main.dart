@@ -1,6 +1,6 @@
 import 'package:poptart_bluesky_moderation/poptart_bluesky_moderation.dart';
-import 'package:poptart_lex/app/bsky/actor/defs/profile_view_basic.dart';
-import 'package:poptart_lex/app/bsky/actor/defs/viewer_state.dart';
+import 'package:bluesky_poptart/app/bsky/actor/defs/profile_view_basic.dart';
+import 'package:bluesky_poptart/app/bsky/actor/defs/viewer_state.dart';
 import 'package:poptart_lex/com/atproto/label/defs.dart';
 
 void main() {

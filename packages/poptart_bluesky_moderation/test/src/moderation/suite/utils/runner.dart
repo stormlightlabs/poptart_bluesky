@@ -5,8 +5,8 @@ import 'package:poptart_bluesky_moderation/src/types/moderation_ui.dart';
 import 'package:poptart_bluesky_moderation/src/types/subjects/moderation_subject_post.dart';
 import 'package:poptart_bluesky_moderation/src/types/subjects/moderation_subject_profile.dart';
 import 'package:poptart_core/poptart_core.dart';
-import 'package:poptart_lex/app/bsky/actor/defs/profile_view_basic.dart';
-import 'package:poptart_lex/app/bsky/actor/defs/viewer_state.dart';
+import 'package:bluesky_poptart/app/bsky/actor/defs/profile_view_basic.dart';
+import 'package:bluesky_poptart/app/bsky/actor/defs/viewer_state.dart';
 import 'package:poptart_lex/com/atproto/label/defs.dart';
 import 'package:test/test.dart';
 

@@ -6,7 +6,7 @@
 import 'package:poptart_lex/com/atproto/label/defs.dart';
 
 // Project imports:
-import 'package:poptart_lex/app/bsky/actor/defs/viewer_state.dart';
+import 'package:bluesky_poptart/app/bsky/actor/defs/viewer_state.dart';
 import '../../decision.dart';
 import '../behaviors/moderation_opts.dart';
 import '../labels.dart';

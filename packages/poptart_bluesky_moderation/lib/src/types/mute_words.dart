@@ -4,10 +4,10 @@
 
 // Package imports:
 import 'package:characters/characters.dart';
-import 'package:poptart_lex/app/bsky/actor/defs/muted_word.dart';
-import 'package:poptart_lex/app/bsky/actor/defs/muted_word_target.dart';
-import 'package:poptart_lex/app/bsky/richtext/facet/main.dart';
-import 'package:poptart_lex/app/bsky/richtext/facet/union_main_features.dart';
+import 'package:bluesky_poptart/app/bsky/actor/defs/muted_word.dart';
+import 'package:bluesky_poptart/app/bsky/actor/defs/muted_word_target.dart';
+import 'package:bluesky_poptart/app/bsky/richtext/facet/main.dart';
+import 'package:bluesky_poptart/app/bsky/richtext/facet/union_main_features.dart';
 
 /// List of 2-letter lang codes for languages that either don't use spaces, or
 /// don't use spaces in a way conducive to word-based filtering.

@@ -6,9 +6,9 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
-import 'package:poptart_lex/app/bsky/actor/defs/profile_view.dart';
-import 'package:poptart_lex/app/bsky/actor/defs/profile_view_basic.dart';
-import 'package:poptart_lex/app/bsky/actor/defs/profile_view_detailed.dart';
+import 'package:bluesky_poptart/app/bsky/actor/defs/profile_view.dart';
+import 'package:bluesky_poptart/app/bsky/actor/defs/profile_view_basic.dart';
+import 'package:bluesky_poptart/app/bsky/actor/defs/profile_view_detailed.dart';
 
 part 'moderation_subject_profile.freezed.dart';
 

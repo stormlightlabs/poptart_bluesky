@@ -5,9 +5,9 @@ import 'package:poptart_bluesky_moderation/src/types/behaviors/moderation_prefs.
 import 'package:poptart_bluesky_moderation/src/types/mute_words.dart';
 import 'package:poptart_bluesky_moderation/src/types/subjects/moderation_subject_post.dart';
 import 'package:poptart_bluesky_text/poptart_bluesky_text.dart';
-import 'package:poptart_lex/app/bsky/actor/defs/muted_word.dart';
-import 'package:poptart_lex/app/bsky/actor/defs/muted_word_target.dart';
-import 'package:poptart_lex/app/bsky/richtext/facet/main.dart';
+import 'package:bluesky_poptart/app/bsky/actor/defs/muted_word.dart';
+import 'package:bluesky_poptart/app/bsky/actor/defs/muted_word_target.dart';
+import 'package:bluesky_poptart/app/bsky/richtext/facet/main.dart';
 import 'package:test/test.dart';
 
 import 'utils/mock.dart';
